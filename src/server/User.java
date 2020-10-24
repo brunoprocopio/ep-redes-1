@@ -4,10 +4,16 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+// Classe para abstrair a entidade usuário
 public class User {
 
+    // variável que armazena o login do usuário
     private String user;
+
+    // variável para armazenar os arquivos do usuário
     private Set<ServerFile> files;
+
+    // variável que armazena se o usuário já fez o logout
     private boolean loggedId;
 
     public User(String user) {

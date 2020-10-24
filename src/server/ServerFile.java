@@ -2,6 +2,7 @@ package server;
 
 import java.util.Objects;
 
+// Classe para abstratir os arquivos do servidor
 public class ServerFile {
 
     private String name;
