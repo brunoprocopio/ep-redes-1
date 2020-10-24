@@ -17,6 +17,8 @@ public class MainServer {
     // variável que armazena o caminho da máquina onde os arquivos serão salvos
     private static final String FILES_PATH = "D:\\Dev\\EACH\\ep\\";
 
+    // como referência para o socket, foi utilizado esse exemplo
+    // https://www.baeldung.com/a-guide-to-java-sockets
     public static void main(String[] args) throws Exception {
         users = new HashMap<>();
         ServerSocket serverSocket = new ServerSocket(PORT);
@@ -193,11 +195,13 @@ public class MainServer {
         return Base64.getDecoder().decode(imageDataString);
     }
 
+    // exemplo pego de https://giuliascalaberni.wordpress.com/2017/01/19/transfer-images-with-java-socket/
     // transforma o arquivo (em bytes) para uma string base64
     private static String encodeImage(byte[] imageByteArray) {
         return Base64.getEncoder().encodeToString(imageByteArray);
     }
 
+    // exemplo pego de https://giuliascalaberni.wordpress.com/2017/01/19/transfer-images-with-java-socket/
     // cria um dirétorio dentro de FILES_PATH para o usuário, caso esse 
     // diretório não exista
     private static void createUserDirectory(String user) {

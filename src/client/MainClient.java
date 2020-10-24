@@ -281,12 +281,14 @@ public class MainClient {
         }
     }
 
+    // exemplo pego de https://giuliascalaberni.wordpress.com/2017/01/19/transfer-images-with-java-socket/
     // transforma imagem de string (base64) para um array de bytes
     // para ser escrito no disco
     private static byte[] decodeImage(String imageDataString) {
         return Base64.getDecoder().decode(imageDataString);
     }
 
+    // exemplo pego de https://giuliascalaberni.wordpress.com/2017/01/19/transfer-images-with-java-socket/
     // transforma o arquivo (em bytes) para uma string base64
     private static String encodeImage(byte[] imageByteArray) {
         return Base64.getEncoder().encodeToString(imageByteArray);
