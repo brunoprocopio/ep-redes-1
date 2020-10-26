@@ -51,20 +51,20 @@ public class MainClient {
     }
 
     // fecha a conexão com o socket
-    private static void closeConnection(SocketConnection conn) throws IOException {
+    private static void closeConnection(client.SocketConnection conn) throws IOException {
         conn.out.close();
         conn.in.close();
     }
 
     // cria conexão com o socket
-    public static SocketConnection getConnection() throws IOException {
+    public static client.SocketConnection getConnection() throws IOException {
         Socket socket = new Socket("localhost", PORT);
 
         // Cria o reader e writer
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        return new SocketConnection(out, in);
+        return new client.SocketConnection(out, in);
     }
 
     // exibe mensagem para o login

@@ -15,11 +15,14 @@ public class MainServer {
     private static HashMap<String, User> users;
 
     // variável que armazena o caminho da máquina onde os arquivos serão salvos
-    private static final String FILES_PATH = "D:\\Dev\\EACH\\ep\\";
+    private static final String FILES_PATH = System.getProperty("user.dir");
+
+    private static final String FILE_SEPARATOR = System.getProperty("file.separator");
 
     // como referência para o socket, foi utilizado esse exemplo
     // https://www.baeldung.com/a-guide-to-java-sockets
     public static void main(String[] args) throws Exception {
+        System.out.println("Servidor inicializado. \nOs arquivos serão salvos em: " + FILES_PATH);
         users = new HashMap<>();
         ServerSocket serverSocket = new ServerSocket(PORT);
 
@@ -72,16 +75,22 @@ public class MainServer {
                     break;
                 case "LIST_FILES":
                     out.println(listFiles(command.getArgs()[0]));
+                    break;
                 case "DELETE_FILE":
                     out.println(deleteFile(command.getArgs()[0], command.getArgs()[1]));
+                    break;
                 case "DOWNLOAD_FILE":
                     out.println(sendFile(command.getArgs()[0], command.getArgs()[1]));
+                    break;
                 case "LOGOUT":
                     logout(command.getArgs()[0]);
+                    break;
                 case "LIST_USERS":
                     out.println(listUsers());
+                    break;
                 case "LIST_USER_FILES":
                     out.println(listUserFiles(command.getArgs()[0]));
+                    break;
                 default:
                     out.println("INVALID");
                     break;
@@ -115,7 +124,7 @@ public class MainServer {
     // método responsável por receber um upload de arquivo
     private static String receiveFile(String user, String fileName, String base64) throws Exception {
         // checar se arquivo já existe
-        String filePath = FILES_PATH + "\\" + user + "\\" + fileName;
+        String filePath = FILES_PATH + FILE_SEPARATOR + user + FILE_SEPARATOR + fileName;
         ServerFile file = new ServerFile(fileName, filePath);
 
         if (users.get(user).hasFile(file)) {
@@ -205,7 +214,7 @@ public class MainServer {
     // cria um dirétorio dentro de FILES_PATH para o usuário, caso esse 
     // diretório não exista
     private static void createUserDirectory(String user) {
-        File dir = new File(FILES_PATH + "\\" + user);
+        File dir = new File(FILES_PATH + FILE_SEPARATOR + user);
         if (!dir.exists())
             dir.mkdirs();
     }

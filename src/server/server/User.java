@@ -46,7 +46,7 @@ public class User {
         Iterator<ServerFile> it = files.iterator();
 
         while (it.hasNext()) {
-            filesString += (it.next().getName() + "|");
+            filesString += (it.next().getName() + " | ");
         }
 
         return filesString;
